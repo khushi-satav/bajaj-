@@ -38,6 +38,19 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '16kb' }));
 app.use(express.urlencoded({ extended: true, limit: '16kb' }));
 
+// ── Root API Route ──
+app.get('/api', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Welcome to DeskFlow API',
+    endpoints: {
+      health: '/api/health',
+      tickets: '/api/tickets',
+      stats: '/api/tickets/stats',
+    },
+  });
+});
+
 // ── Health Check ──
 app.get('/api/health', (req, res) => {
   res.status(200).json({
